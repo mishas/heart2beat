@@ -46,6 +46,9 @@ public class HeartBeat : MonoBehaviour {
 	private float segmentLength = -1f;
 	private BeatSize[] segmentBeatSize = {ZERO_BEAT_SIZE};
 	
+	private BeatSize[] beatSizeMemory = new BeatSize[500];
+	private int indexInBeatSizeMemory = 0;
+	
 	private BeatSize GetPTWaveAtTime(float timeWithinSegment, BeatSize beatSize) {
 		float intensity = -Mathf.Pow(2*timeWithinSegment/segmentLength - 1, 2) + 1f;
 		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity);
@@ -66,6 +69,10 @@ public class HeartBeat : MonoBehaviour {
 				rSize.MechanicalPulse * (1-intensity) + sSize.MechanicalPulse * intensity);
 		}	
 		return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity));
+	}
+	
+	public BeatSize GetBeatAtFramesBehind(int framesBehind) {
+		return beatSizeMemory[(beatSizeMemory.Length + indexInBeatSizeMemory - framesBehind) % beatSizeMemory.Length];
 	}
 	
 	public BeatSize GetBeatAtTime(float time) {
@@ -104,18 +111,23 @@ public class HeartBeat : MonoBehaviour {
 		case Segment.PP_INTERVAL:
 		case Segment.PR_SEGMENT:
 		case Segment.ST_SEGMENT:
-			return segmentBeatSize[0];
+			beatSizeMemory[indexInBeatSizeMemory++ % beatSizeMemory.Length] = segmentBeatSize[0];
+			break;
 		case Segment.P_WAVE:
-			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
+			beatSizeMemory[indexInBeatSizeMemory++% beatSizeMemory.Length] =
+				GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
+			break;
 		case Segment.QRS_COMPLEX:
-			return GetQRSWaveAtTime(time - segmentStartTime, segmentBeatSize[0], segmentBeatSize[1], segmentBeatSize[2]);
+			beatSizeMemory[indexInBeatSizeMemory++% beatSizeMemory.Length] =
+				GetQRSWaveAtTime(time - segmentStartTime, segmentBeatSize[0], segmentBeatSize[1], segmentBeatSize[2]);
+			break;
 		case Segment.T_WAVE:
-			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
+			beatSizeMemory[indexInBeatSizeMemory++% beatSizeMemory.Length] =
+				GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
+			break;
 		}
 		
-		// Should never get here!
-		Debug.Log ("Should never get here!");
-		return new BeatSize(0f, 0f);
+		return beatSizeMemory[(indexInBeatSizeMemory-1) % beatSizeMemory.Length];
 	}
 
 	// Use this for initialization
