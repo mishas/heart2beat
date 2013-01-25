@@ -40,7 +40,7 @@ public class HeartBeat : MonoBehaviour {
 		T_WAVE = 5,
 	}
 	
-	private HeartRhythm currentRhythm = new NormalSynusRhythm();
+	public HeartRhythm currentRhythm;
 	private Segment currentSegment = Segment.PP_INTERVAL;
 	private float segmentStartTime = 0f;
 	private float segmentLength = -1f;

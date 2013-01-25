@@ -1,38 +1,50 @@
 using System;
 
 public class NormalSynusRhythm : HeartRhythm {
+	private static Random rand = new Random();
+	
+	public float jitterFactor = 0.05f;
+	
 	public override HeartBeat.BeatSize GetPSize() {
-		return new HeartBeat.BeatSize(0.2f, 0.2f);
+		float size = 0.2f * GetJitter();
+		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetQSize() {
-		return new HeartBeat.BeatSize(-0.1f, -0.1f);
+		float size = -0.1f * GetJitter();
+		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetRSize() {
-		return new HeartBeat.BeatSize(0.8f, 0.8f);
+		float size = 0.8f * GetJitter();
+		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetSSize() {
-		return new HeartBeat.BeatSize(-0.4f, -0.4f);
+		float size = -0.4f * GetJitter();
+		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetTSize() {
-		return new HeartBeat.BeatSize(0.3f, 0f);
+		return new HeartBeat.BeatSize(0.3f * GetJitter(), 0f);
 	}
 	
 	public override float GetPPInterval() {
-		return (60 / bpm) - GetPRInterval() - GetQTInterval();
+		return ((60 / bpm) - GetPRInterval() - GetQTInterval()) * GetJitter();
 	}
 	public override float GetPRInterval() {
-		return 0.2f;
+		return 0.2f * GetJitter();
 	}
 	public override float GetPRSegment() {
-		return 0.08f;
+		return 0.08f * GetJitter();
 	}
 	public override float GetQRSComplex() {
-		return 0.12f;
+		return 0.12f * GetJitter();
 	}
 	public override float GetSTSegment() {
-		return 0.08f;
+		return 0.08f * GetJitter();
 	}
 	public override float GetQTInterval() {
-		return 0.36f;
+		return 0.36f * GetJitter();
+	}
+	
+	private float GetJitter() {
+		return 1 + (float) rand.NextDouble() * jitterFactor;
 	}
 }
