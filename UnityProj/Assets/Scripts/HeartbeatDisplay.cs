@@ -14,7 +14,7 @@ public class HeartbeatDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 localPosition = transform.localPosition;
-		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time + lookaheadWindow);
+		HeartBeat.BeatSize beatSize = heartbeat.GetBeatAtTime(Time.time + lookaheadWindow);
 		localPosition.y = beatSize.ElectricalPulse;
 		//localPosition.y = Mathf.Sin(Time.time);
 		//localPosition.x = Time.time;
