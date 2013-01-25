@@ -29,7 +29,7 @@ public class HeartBeat : MonoBehaviour {
 		float mechanicalBeat;
 	}
 	
-	private static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f);
+	public static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f);
 	
 	private enum Segment {
 		PP_INTERVAL = 0,
