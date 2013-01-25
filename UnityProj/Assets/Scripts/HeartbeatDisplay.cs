@@ -1,0 +1,22 @@
+using UnityEngine;
+using System.Collections;
+
+public class HeartbeatDisplay : MonoBehaviour {
+	
+	
+	// Use this for initialization
+	void Start () {
+		float test = 8.2f % 2.3f;
+		Debug.Log(test);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		Vector3 localPosition = transform.localPosition;
+		localPosition.y = Mathf.Sin(Time.time);
+		//localPosition.x = Time.time;
+		transform.localPosition = localPosition;
+		
+	}
+	
+}

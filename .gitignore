@@ -1,2 +1,6 @@
 UnityProj/Library/
 UnityProj/Temp/
+*.csproj
+*.pidb
+*.userprefs
+*.sln
