@@ -51,7 +51,7 @@ public class HeartBeat : MonoBehaviour {
 		// P wave
 		if (moduluTime < prInterval) {
 			if (moduluTime < prInterval - prSegment) {
-				float intensity = -Mathf.Pow(moduluTime/(prInterval-prSegment) - 0.5f, 2f) + 1f;
+				float intensity = -Mathf.Pow(2*moduluTime/(prInterval-prSegment) - 1, 2) + 1f;
 				return new BeatSize(pSize.ElectricalPulse * intensity, pSize.MechanicalPulse * intensity);
 			} else {
 				return new BeatSize(0f, 0f);
@@ -82,7 +82,7 @@ public class HeartBeat : MonoBehaviour {
 		// T wave
 		if (moduluTime < prInterval + qtIntervale) {
 			moduluTime -= prInterval + qrsComplex + stSegment;
-			float intensity = -Mathf.Pow(moduluTime/(qtIntervale-qrsComplex-stSegment) - 0.5f, 2f) + 1f;
+			float intensity = -Mathf.Pow(2*moduluTime/(qtIntervale-qrsComplex-stSegment) - 1, 2) + 1f;
 			return new BeatSize(tSize.ElectricalPulse * intensity, tSize.MechanicalPulse * intensity);
 		}
 		// We're in the space between beats.
