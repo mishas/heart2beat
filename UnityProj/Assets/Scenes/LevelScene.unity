@@ -127,7 +127,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 168564333}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -245,7 +245,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 498948997}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -329,6 +329,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 669070180}
   - 114: {fileID: 669070179}
+  - 114: {fileID: 669070181}
   m_Layer: 0
   m_Name: Heartbeat
   m_TagString: Untagged
@@ -358,6 +359,19 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &669070181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3f04bc015fdf84e8857e8fc7f006e5, type: 3}
+  m_Name: 
+  heartbeat: {fileID: 669070179}
+  targetBody: {fileID: 1877445310}
+  forceScale: 300
 --- !u!1 &686954546
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +425,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686954546}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -466,7 +480,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 871652153}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -844,8 +858,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830666942}
-  m_LocalRotation: {x: -.270250052, y: .233045965, z: -.0675968751, w: -.931710899}
-  m_LocalPosition: {x: 23.6931534, y: 19.6341324, z: -2.52020931}
+  m_LocalRotation: {x: -.270156264, y: .298939466, z: -.088657774, w: -.910928428}
+  m_LocalPosition: {x: 15.4197302, y: 6.17960119, z: 16.0974464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -880,7 +894,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 863d4647fb65a29469e008036eee8426, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -892,7 +906,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1877445305}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 63af486aa1f23ee4bbb610ca7724b8db, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -913,7 +927,7 @@ Transform:
   m_GameObject: {fileID: 1877445305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.3076038, y: 1.79999995, z: 29.1699352}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!54 &1877445310
