@@ -20,7 +20,7 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time);
+		HeartBeat.BeatSize beatSize = heartbeat.GetBeatAtTime(Time.time);
 		float pulse = beatSize.MechanicalPulse;
 		
 		targetBody.AddForce(Vector3.up * pulse * forceScale);

@@ -29,6 +29,8 @@ public class HeartBeat : MonoBehaviour {
 		float mechanicalBeat;
 	}
 	
+	private static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f);
+	
 	private enum Segment {
 		PP_INTERVAL = 0,
 		P_WAVE = 1,
@@ -38,17 +40,19 @@ public class HeartBeat : MonoBehaviour {
 		T_WAVE = 5,
 	}
 	
+	private HeartRhythm currentRhythm = new NormalSynusRhythm();
 	private Segment currentSegment = Segment.PP_INTERVAL;
 	private float segmentStartTime = 0f;
 	private float segmentLength = -1f;
+	private BeatSize[] segmentBeatSize = {ZERO_BEAT_SIZE};
 	
 	private BeatSize GetPTWaveAtTime(float timeWithinSegment, BeatSize beatSize) {
 		float intensity = -Mathf.Pow(2*timeWithinSegment/segmentLength - 1, 2) + 1f;
 		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity);
 	}
 	
-	private BeatSize GetQRSWaveAtTime(float timeWithinSegment) {
-		float quarterSegment = qrsComplex / 4;
+	private BeatSize GetQRSWaveAtTime(float timeWithinSegment, BeatSize qSize, BeatSize rSize, BeatSize sSize) {
+		float quarterSegment = segmentLength / 4;
 		float intensity = (timeWithinSegment % quarterSegment) / quarterSegment;
 		if (timeWithinSegment < quarterSegment) {
 			return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity);
@@ -70,22 +74,28 @@ public class HeartBeat : MonoBehaviour {
 			segmentStartTime = time;
 			switch (currentSegment) {
 			case Segment.PP_INTERVAL:
-				segmentLength = (60 / bpm) - prInterval - qtIntervale;
+				segmentLength = (60 / currentRhythm.GetBPM()) - currentRhythm.GetPRInterval() - currentRhythm.GetQTInterval();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
 				break;
 			case Segment.P_WAVE:
-				segmentLength = prInterval - prSegment;
+				segmentLength = currentRhythm.GetPRInterval() - currentRhythm.GetPRSegment();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetPSize()};
 				break;
 			case Segment.PR_SEGMENT:
-				segmentLength = prSegment;
+				segmentLength = currentRhythm.GetPRSegment();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
 				break;
 			case Segment.QRS_COMPLEX:
-				segmentLength = qrsComplex;
+				segmentLength = currentRhythm.GetQRSComplex();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetQSize(), currentRhythm.GetRSize(), currentRhythm.GetSSize()};
 				break;
 			case Segment.ST_SEGMENT:
-				segmentLength = stSegment;
+				segmentLength = currentRhythm.GetSTSegment();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
 				break;
 			case Segment.T_WAVE:
-				segmentLength = qtIntervale - qrsComplex - stSegment;
+				segmentLength = currentRhythm.GetQTInterval() - currentRhythm.GetQRSComplex() - currentRhythm.GetSTSegment();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetTSize()};
 				break;
 			}
 		}
@@ -94,40 +104,23 @@ public class HeartBeat : MonoBehaviour {
 		case Segment.PP_INTERVAL:
 		case Segment.PR_SEGMENT:
 		case Segment.ST_SEGMENT:
-			return new BeatSize(0f, 0f);
+			return segmentBeatSize[0];
 		case Segment.P_WAVE:
-			return GetPTWaveAtTime(time - segmentStartTime, pSize);
+			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
 		case Segment.QRS_COMPLEX:
-			return GetQRSWaveAtTime(time - segmentStartTime);
+			return GetQRSWaveAtTime(time - segmentStartTime, segmentBeatSize[0], segmentBeatSize[1], segmentBeatSize[2]);
 		case Segment.T_WAVE:
-			return GetPTWaveAtTime(time - segmentStartTime, tSize);
+			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
 		}
 		
 		// Should never get here!
 		Debug.Log ("Should never get here!");
 		return new BeatSize(0f, 0f);
 	}
-	
-	// TODO(misha): Need some randomness in beats.
-	private float bpm = 60;
-	private BeatSize pSize = new BeatSize(0.2f, 0.2f);
-	private BeatSize qSize = new BeatSize(-0.1f, -0.1f);
-	private BeatSize rSize = new BeatSize(0.8f, 0.8f);
-	private BeatSize sSize = new BeatSize(-0.4f, -0.4f);
-	private BeatSize tSize = new BeatSize(0.3f, 0f);
-	private float prInterval = 0.2f;
-	private float prSegment = 0.08f;
-	private float qrsComplex = 0.12f;
-	private float stSegment = 0.08f;
-	private float qtIntervale = 0.36f;
 
 	// Use this for initialization
-	void Start () {
-	
-	}
+	void Start () { }
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update () { }
 }
