@@ -125,6 +125,30 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.y
       value: .699999988
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9600000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a2754576e06155449c3e1e39fbfbbfd, type: 2}
+    - target: {fileID: 2300000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
   m_RootGameObject: {fileID: 1131420170}
@@ -163,7 +187,7 @@ TrailRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8a2754576e06155449c3e1e39fbfbbfd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -208,7 +232,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 266305704}
   m_GameObject: {fileID: 764279701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -301,8 +325,8 @@ Camera:
   m_GameObject: {fileID: 1131420170}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: .699999988
