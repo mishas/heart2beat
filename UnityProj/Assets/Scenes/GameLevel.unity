@@ -195,11 +195,19 @@ Prefab:
       objectReference: {fileID: 1499061130}
     - target: {fileID: 9600000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
       propertyPath: m_StartWidth
-      value: .200000003
+      value: .100000001
       objectReference: {fileID: 0}
     - target: {fileID: 9600000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
       propertyPath: m_EndWidth
-      value: .200000003
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_Depth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: field of view
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
@@ -246,8 +254,8 @@ TrailRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_Time: 10
-  m_StartWidth: .200000003
-  m_EndWidth: .200000003
+  m_StartWidth: .100000001
+  m_EndWidth: .100000001
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
@@ -388,7 +396,7 @@ Camera:
     height: .300000012
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 15
   orthographic: 0
   orthographic size: 100
   m_Depth: 2
