@@ -465,6 +465,8 @@ GameObject:
   - 4: {fileID: 669070180}
   - 114: {fileID: 669070179}
   - 114: {fileID: 669070181}
+  - 114: {fileID: 669070182}
+  - 114: {fileID: 669070183}
   m_Layer: 0
   m_Name: Heartbeat
   m_TagString: Untagged
@@ -483,6 +485,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aedba057e35c43a48d14d869a1281a3, type: 3}
   m_Name: 
+  currentRhythm: {fileID: 669070182}
 --- !u!4 &669070180
 Transform:
   m_ObjectHideFlags: 0
@@ -508,6 +511,29 @@ MonoBehaviour:
   targetBody: {fileID: 1877445310}
   forceScale: 300
   referenceTransform: {fileID: 495024687}
+--- !u!114 &669070182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc9bed1f25f4461e8092de8d4ad76be, type: 3}
+  m_Name: 
+  bpm: 60
+  jitterFactor: .0500000007
+--- !u!114 &669070183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7820301a9cd8d402fbdc6bbd0a1057e4, type: 3}
+  m_Name: 
+  bpm: 60
 --- !u!1 &686954546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,6 +1402,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
+      propertyPath: currentRhythm
+      value: 
+      objectReference: {fileID: 669070182}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
   m_RootGameObject: {fileID: 669070178}
