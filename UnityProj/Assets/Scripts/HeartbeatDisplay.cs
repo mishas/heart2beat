@@ -3,17 +3,19 @@ using System.Collections;
 
 public class HeartbeatDisplay : MonoBehaviour {
 	
+	public HeartBeat heartbeat;
 	
 	// Use this for initialization
 	void Start () {
-		float test = 8.2f % 2.3f;
-		Debug.Log(test);
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Vector3 localPosition = transform.localPosition;
-		localPosition.y = Mathf.Sin(Time.time);
+		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time);
+		localPosition.y = beatSize.ElectricalPulse * 0.5f;
+		//localPosition.y = Mathf.Sin(Time.time);
 		//localPosition.x = Time.time;
 		transform.localPosition = localPosition;
 		
