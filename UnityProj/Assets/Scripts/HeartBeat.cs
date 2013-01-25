@@ -45,11 +45,10 @@ public class HeartBeat : MonoBehaviour {
 	
 	public BeatSize getBeatAtTime(float time) {
 		time -= startTimeout;
-		float fullComplexSize = prInterval + qtIntervale;
-		float complexAndSpaceSize = (60 - bpm * fullComplexSize) / bpm;
-		// Move to use %
-		float moduluTime = time - (complexAndSpaceSize * (int) (time / complexAndSpaceSize));
+		float complexAndSpaceSize = 60 / bpm;
+		float moduluTime = time % complexAndSpaceSize;
 		
+		// P wave
 		if (moduluTime < prInterval) {
 			if (moduluTime < prInterval - prSegment) {
 				float intensity = -Mathf.Pow(moduluTime/(prInterval-prSegment) - 0.5f, 2f) + 1f;
@@ -58,9 +57,10 @@ public class HeartBeat : MonoBehaviour {
 				return new BeatSize(0f, 0f);
 			}
 		}
+		// QRS complex
 		if (moduluTime < prInterval + qrsComplex) {
 			moduluTime -= prInterval;
-			float quoter = moduluTime / 4;
+			float quoter = qrsComplex / 4;
 			float intensity = (moduluTime % (moduluTime / 4)) / quoter;
 			if (moduluTime < quoter) {
 				return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity);
@@ -75,9 +75,11 @@ public class HeartBeat : MonoBehaviour {
 			}	
 			return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity));
 		}
+		// ST period
 		if (moduluTime < prInterval + qrsComplex + stSegment) {
 			return new BeatSize(0f, 0f);
 		}
+		// T wave
 		if (moduluTime < prInterval + qtIntervale) {
 			moduluTime -= prInterval + qrsComplex + stSegment;
 			float intensity = -Mathf.Pow(moduluTime/(qtIntervale-qrsComplex-stSegment) - 0.5f, 2f) + 1f;

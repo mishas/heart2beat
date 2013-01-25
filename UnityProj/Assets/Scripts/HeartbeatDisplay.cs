@@ -14,7 +14,7 @@ public class HeartbeatDisplay : MonoBehaviour {
 	void Update () {
 		Vector3 localPosition = transform.localPosition;
 		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time);
-		localPosition.y = beatSize.ElectricalPulse * 0.5f;
+		localPosition.y = beatSize.ElectricalPulse;
 		//localPosition.y = Mathf.Sin(Time.time);
 		//localPosition.x = Time.time;
 		transform.localPosition = localPosition;
