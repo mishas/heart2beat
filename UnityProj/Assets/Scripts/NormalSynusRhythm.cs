@@ -1,10 +1,6 @@
 using System;
 
 public class NormalSynusRhythm : HeartRhythm {
-	public override float GetBPM() {
-		return 60;
-	}
-	
 	public override HeartBeat.BeatSize GetPSize() {
 		return new HeartBeat.BeatSize(0.2f, 0.2f);
 	}
@@ -21,6 +17,9 @@ public class NormalSynusRhythm : HeartRhythm {
 		return new HeartBeat.BeatSize(0.3f, 0f);
 	}
 	
+	public override float GetPPInterval() {
+		return (60 / bpm) - GetPRInterval() - GetQTInterval();
+	}
 	public override float GetPRInterval() {
 		return 0.2f;
 	}

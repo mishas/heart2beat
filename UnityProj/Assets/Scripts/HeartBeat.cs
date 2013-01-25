@@ -74,7 +74,7 @@ public class HeartBeat : MonoBehaviour {
 			segmentStartTime = time;
 			switch (currentSegment) {
 			case Segment.PP_INTERVAL:
-				segmentLength = (60 / currentRhythm.GetBPM()) - currentRhythm.GetPRInterval() - currentRhythm.GetQTInterval();
+				segmentLength = currentRhythm.GetPPInterval();
 				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
 				break;
 			case Segment.P_WAVE:

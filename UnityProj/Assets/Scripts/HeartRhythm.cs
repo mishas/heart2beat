@@ -2,8 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public abstract class HeartRhythm : MonoBehaviour {
-	// Instead of BPM, maybe hold GetPPInterval?
-	public abstract float GetBPM();
+	public float bpm = 60;
 	
 	public abstract HeartBeat.BeatSize GetPSize();
 	public abstract HeartBeat.BeatSize GetQSize();
@@ -11,6 +10,7 @@ public abstract class HeartRhythm : MonoBehaviour {
 	public abstract HeartBeat.BeatSize GetSSize();
 	public abstract HeartBeat.BeatSize GetTSize();
 	
+	public abstract float GetPPInterval();
 	public abstract float GetPRInterval();
 	public abstract float GetPRSegment();
 	public abstract float GetQRSComplex();
