@@ -21,8 +21,8 @@ public class WinConditionCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other == targetCollider) {
-			Destroy(other.gameObject);
-			hasWon = true;	
+			hasWon = true;
+			StartCoroutine(DelayedGoToMenu());
 		}
 	}
 	
@@ -31,4 +31,10 @@ public class WinConditionCollider : MonoBehaviour {
 			GUI.Label(textRect, "You Win!", textStyle);
 		}
 	}
+	
+	IEnumerator DelayedGoToMenu() {
+		yield return new WaitForSeconds(2f);
+		Application.LoadLevel("IntroScene");
+	}
+		
 }
