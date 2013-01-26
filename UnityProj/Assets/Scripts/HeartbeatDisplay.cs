@@ -6,7 +6,8 @@ public class HeartbeatDisplay : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		float test = 8.2f % 2.3f;
+		Debug.Log(test);
 	}
 	
 	// Update is called once per frame
@@ -15,6 +16,7 @@ public class HeartbeatDisplay : MonoBehaviour {
 		localPosition.y = Mathf.Sin(Time.time);
 		//localPosition.x = Time.time;
 		transform.localPosition = localPosition;
+		
 	}
 	
 }
