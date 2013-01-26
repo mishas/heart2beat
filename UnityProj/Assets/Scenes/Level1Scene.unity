@@ -461,6 +461,7 @@ MonoBehaviour:
   forceScale: 200
   minJumpHeight: .300000012
   referenceTransform: {fileID: 957398845}
+  noUpdateWindow: .200000003
 --- !u!114 &187932552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,8 +576,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 332969167}
-  m_LocalRotation: {x: -.396979779, y: -.132265195, z: .0579327196, w: -.90639776}
-  m_LocalPosition: {x: -58.31707, y: 116.009369, z: -110.348297}
+  m_LocalRotation: {x: .3787615, y: .131931558, z: -.054647848, w: .914410949}
+  m_LocalPosition: {x: -33, y: 39.9000015, z: -49.7000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1955418857}
