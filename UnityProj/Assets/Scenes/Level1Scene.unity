@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 224409208}
   m_GameObject: {fileID: 24647329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 10}
+  m_LocalPosition: {x: 2, y: -.300000012, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999361775}
@@ -466,6 +466,9 @@ GameObject:
   - 114: {fileID: 187932550}
   - 114: {fileID: 187932549}
   - 114: {fileID: 187932548}
+  - 114: {fileID: 187932557}
+  - 114: {fileID: 187932556}
+  - 82: {fileID: 187932555}
   - 114: {fileID: 187932554}
   m_Layer: 0
   m_Name: Heartbeat
@@ -557,6 +560,89 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 187932547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c539270727f504fe2bf06ad7cc498626, type: 3}
+  m_Name: 
+  bpm: 30
+  jitterFactor: .0500000007
+--- !u!82 &187932555
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 43906cea48de8864591a36460740a4f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 389876310}
+  m_GameObject: {fileID: 187932547}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 64a276faa4879794794b8df24d354a28, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &187932556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: 43906cea48de8864591a36460740a4f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 389876310}
+  m_GameObject: {fileID: 187932547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1721c4fc7f4ac4ebf15a0e2ce55589, type: 3}
+  m_Name: 
+  heartBeatHistory: {fileID: 187932548}
+  targetClip: {fileID: 187932555}
+--- !u!114 &187932557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: 43906cea48de8864591a36460740a4f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 389876310}
   m_GameObject: {fileID: 187932547}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -892,6 +978,10 @@ Prefab:
       propertyPath: forceScale
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 64a276faa4879794794b8df24d354a28, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
   m_RootGameObject: {fileID: 187932547}
@@ -1961,7 +2051,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1079598642}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: .707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 9.92021561, y: 13.5185394, z: 8.51312923}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -2148,7 +2238,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 721233389}
   m_GameObject: {fileID: 1277158684}
-  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
+  m_Material: {fileID: 13400000, guid: a7f24800cad324b02b4fd47e52cadd77, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
