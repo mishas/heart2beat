@@ -8,10 +8,12 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	public float forceScale = 1f;
 	
 	public Transform referenceTransform;
+	
+	private float sphereRadius;
  
 	// Use this for initialization
 	void Start () {
-	
+		sphereRadius = targetBody.GetComponent<SphereCollider>().radius;
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,10 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	void FixedUpdate() {
 		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time);
 		float pulse = beatSize.MechanicalPulse;
+		if (referenceTransform.InverseTransformPoint(targetBody.position).y - sphereRadius < 0.1 && pulse != 0 ){
+			Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
+			targetBody.AddForce(localUp * pulse * forceScale);
+		}
 		
-		targetBody.AddForce(Vector3.up * pulse * forceScale);
 	}
 }
