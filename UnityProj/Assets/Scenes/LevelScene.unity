@@ -187,6 +187,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 168564333}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &306054675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 306054676}
+  m_Layer: 0
+  m_Name: CameraAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &306054676
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306054675}
+  m_LocalRotation: {x: -.270156264, y: .298939466, z: -.088657774, w: -.910928428}
+  m_LocalPosition: {x: 15.4197302, y: 6.17960119, z: 16.0974464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1074305054}
+  m_Father: {fileID: 0}
 --- !u!1 &495024686
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +945,46 @@ MonoBehaviour:
   rotationLimitDegrees: {x: 30, y: 30}
   rotationSpeed: 30
   targetTransform: {fileID: 495024687}
+--- !u!1 &1074305053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1074305054}
+  - 114: {fileID: 1074305055}
+  m_Layer: 0
+  m_Name: HeartbeatShaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1074305054
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074305053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1830666947}
+  m_Father: {fileID: 306054676}
+--- !u!114 &1074305055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074305053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57fc27fb1b8a2346b96fc83d7083a44, type: 3}
+  m_Name: 
+  heartbeatSource: {fileID: 669070184}
+  shakeScale: -1
 --- !u!1 &1408353762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,11 +1383,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830666942}
-  m_LocalRotation: {x: -.270156264, y: .298939466, z: -.088657774, w: -.910928428}
-  m_LocalPosition: {x: 15.4197302, y: 6.17960119, z: 16.0974464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1074305054}
 --- !u!1 &1877445305
 GameObject:
   m_ObjectHideFlags: 0
