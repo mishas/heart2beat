@@ -13,11 +13,11 @@ public class BoardInputController : MonoBehaviour {
 	
 	public Transform targetTransform;
 	
-	private Vector3 lastVector3 = null;
+	private Vector3 lastVector3;
 	
 	// Use this for initialization
 	void Start () {
-	
+		lastVector3 = new Vector3(Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
 	}
 	
 	float ProcessAngle(float currentAngle, int changeDirection, bool change, float angleLimit) {
@@ -43,12 +43,9 @@ public class BoardInputController : MonoBehaviour {
 		eulerDegrees.z = ProcessAngle(eulerDegrees.z, -1, Input.GetKey(rotateRightButton), rotationLimitDegrees.y);
 		
 		if (Input.acceleration.x != 0 || Input.acceleration.y != 0 || Input.acceleration.z != 0) {
-			if (lastVector3 == null) {
-				lastVector3 = new Vector3(Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
-			}
-			Vector3.Lerp(Input.acceleration, lastVector3, 1.5);
-			eulerDegrees.x = lastVector3.x * 360 / (2 * Mathf.PI);
-			eulerDegrees.z = lastVector3.y * 360 / (2 * Mathf.PI);
+			lastVector3 = Vector3.Lerp(lastVector3, Input.acceleration, 0.2f);
+			eulerDegrees.x = lastVector3.y * 360 / (2 * Mathf.PI);
+			eulerDegrees.z = -lastVector3.x * 360 / (2 * Mathf.PI);
 		}
 		
 		targetTransform.localEulerAngles = eulerDegrees;

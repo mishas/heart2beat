@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour
 	
 	public LevelDefinition[] levelDefinitions;
 	
+	void Start() {
+		// Disable screen dimming
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
 	
 	public Rect firstButtonRect = new Rect(0.2f, 0.5f, 0.3f, 0.1f);
 	public GUIStyle buttonStyle;

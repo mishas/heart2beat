@@ -93,7 +93,7 @@ PlayerSettings:
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
   AndroidTargetDevice: 0
-  AndroidSplashScreenScale: 0
+  AndroidSplashScreenScale: 2
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   resolutionDialogBanner: {fileID: 0}
