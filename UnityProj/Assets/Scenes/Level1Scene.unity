@@ -577,7 +577,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 332969167}
   m_LocalRotation: {x: .3787615, y: .131931558, z: -.054647848, w: .914410949}
-  m_LocalPosition: {x: -33, y: 39.9000015, z: -49.7000008}
+  m_LocalPosition: {x: -1.5, y: 6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1955418857}
@@ -1485,7 +1485,7 @@ Transform:
   m_GameObject: {fileID: 957398844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
   - {fileID: 1277158688}
   - {fileID: 298308307}
@@ -2623,15 +2623,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -18.4799995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 14.7664204
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -23.5072021
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2655,15 +2655,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_ReceiveShadows
@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57fc27fb1b8a2346b96fc83d7083a44, type: 3}
   m_Name: 
   heartbeatSource: {fileID: 187932548}
-  shakeScale: -4
+  shakeScale: -.699999988
 --- !u!1 &1972446628
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,8 +3075,8 @@ Transform:
   m_PrefabInternal: {fileID: 1730266164}
   m_GameObject: {fileID: 1996008807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.4799995, y: 14.7664204, z: -23.5072021}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1999361774

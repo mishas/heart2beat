@@ -32,7 +32,7 @@ public class BoardInputController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate() {
 		Vector3 eulerDegrees = targetTransform.localEulerAngles;
 		
 		eulerDegrees.x = ProcessAngle(eulerDegrees.x, 1, Input.GetKey(tiltUpButton), rotationLimitDegrees.x);
