@@ -29,9 +29,11 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 		}
 		float pulse = beatSize.MechanicalPulse;
 		
-		if (referenceTransform.InverseTransformPoint(targetBody.position).y - sphereRadius < (0.1 * sphereRadius) + minJumpHeight && pulse > 0 ){
+		Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
+		Vector3 localDown = referenceTransform.TransformDirection(Vector3.down);
+		
+		if (Physics.Raycast(targetBody.position, localDown, (float)(sphereRadius + 0.1 * sphereRadius)) && pulse > 0 ){
 			Debug.Log("Force at time " + Time.time + " : " + pulse);
-			Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
 			targetBody.AddForce(localUp * pulse * forceScale);
 		}
 		
