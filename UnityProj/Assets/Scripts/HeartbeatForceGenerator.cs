@@ -40,7 +40,6 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 				return;
 			}
 			lastUpdateTime = Time.time;
-			Debug.Log("Force at time " + Time.time + " : " + pulse);
 			targetBody.AddForce(localUp * pulse * forceScale);
 		}
 		
