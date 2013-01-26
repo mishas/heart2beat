@@ -40,6 +40,10 @@ public class BoardInputController : MonoBehaviour {
 		eulerDegrees.z = ProcessAngle(eulerDegrees.z, 1, Input.GetKey(rotateLeftButton), rotationLimitDegrees.y);
 		eulerDegrees.z = ProcessAngle(eulerDegrees.z, -1, Input.GetKey(rotateRightButton), rotationLimitDegrees.y);
 		
+		if (Input.acceleration.x != 0 || Input.acceleration.y != 0 || Input.acceleration.z != 0) {
+			Debug.Log ("BLAH: " + Input.acceleration.x + "," + Input.acceleration.y + "," + Input.acceleration.z);
+		}
+		
 		targetTransform.localEulerAngles = eulerDegrees;
 	}
 }
