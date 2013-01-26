@@ -6,6 +6,8 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	public HeartBeat heartbeat;
 	public Rigidbody targetBody;
 	public float forceScale = 1f;
+	
+	public Transform referenceTransform;
  
 	// Use this for initialization
 	void Start () {
