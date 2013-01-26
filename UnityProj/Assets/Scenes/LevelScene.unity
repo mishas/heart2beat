@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   heartbeat: {fileID: 669070184}
   targetBody: {fileID: 1877445310}
-  forceScale: 300
+  forceScale: 200
   minJumpHeight: .300000012
   referenceTransform: {fileID: 495024687}
 --- !u!114 &669070182
