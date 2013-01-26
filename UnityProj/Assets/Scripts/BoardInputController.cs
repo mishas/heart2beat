@@ -45,7 +45,17 @@ public class BoardInputController : MonoBehaviour {
 		if (Input.acceleration.x != 0 || Input.acceleration.y != 0 || Input.acceleration.z != 0) {
 			lastVector3 = Vector3.Lerp(lastVector3, Input.acceleration, 0.2f);
 			eulerDegrees.x = lastVector3.y * 360 / (2 * Mathf.PI);
+			if (eulerDegrees.x > rotationLimitDegrees.x) {
+				eulerDegrees.x = rotationLimitDegrees.x;
+			} else if (eulerDegrees.x < -rotationLimitDegrees.x) {
+				eulerDegrees.x = -rotationLimitDegrees.x;
+			}
 			eulerDegrees.z = -lastVector3.x * 360 / (2 * Mathf.PI);
+			if (eulerDegrees.z > rotationLimitDegrees.y) {
+				eulerDegrees.z = rotationLimitDegrees.y;
+			} else if (eulerDegrees.z < -rotationLimitDegrees.y) {
+				eulerDegrees.z = -rotationLimitDegrees.y;
+			}
 		}
 		
 		targetTransform.localEulerAngles = eulerDegrees;
