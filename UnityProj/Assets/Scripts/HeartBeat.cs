@@ -29,73 +29,98 @@ public class HeartBeat : MonoBehaviour {
 		float mechanicalBeat;
 	}
 	
-	// TODO(misha): Need some randomness in beats.
-	private float startTimeout = 0;
-	private float bpm = 60;
-	private BeatSize pSize = new BeatSize(0.2f, 0.2f);
-	private BeatSize qSize = new BeatSize(-0.1f, -0.1f);
-	private BeatSize rSize = new BeatSize(0.8f, 0.8f);
-	private BeatSize sSize = new BeatSize(-0.4f, -0.4f);
-	private BeatSize tSize = new BeatSize(0.3f, 0f);
-	private float prInterval = 0.2f;
-	private float prSegment = 0.08f;
-	private float qrsComplex = 0.12f;
-	private float stSegment = 0.08f;
-	private float qtIntervale = 0.36f;
+	public static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f);
 	
-	public BeatSize getBeatAtTime(float time) {
-		time -= startTimeout;
-		float complexAndSpaceSize = 60 / bpm;
-		float moduluTime = time % complexAndSpaceSize;
+	private enum Segment {
+		PP_INTERVAL = 0,
+		P_WAVE = 1,
+		PR_SEGMENT = 2,
+		QRS_COMPLEX = 3,
+		ST_SEGMENT = 4,
+		T_WAVE = 5,
+	}
+	
+	public HeartRhythm currentRhythm;
+	private Segment currentSegment = Segment.PP_INTERVAL;
+	private float segmentStartTime = 0f;
+	private float segmentLength = -1f;
+	private BeatSize[] segmentBeatSize = {ZERO_BEAT_SIZE};
+	
+	private BeatSize GetPTWaveAtTime(float timeWithinSegment, BeatSize beatSize) {
+		float intensity = -Mathf.Pow(2*timeWithinSegment/segmentLength - 1, 2) + 1f;
+		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity);
+	}
+	
+	private BeatSize GetQRSWaveAtTime(float timeWithinSegment, BeatSize qSize, BeatSize rSize, BeatSize sSize) {
+		float quarterSegment = segmentLength / 4;
+		float intensity = (timeWithinSegment % quarterSegment) / quarterSegment;
+		if (timeWithinSegment < quarterSegment) {
+			return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity);
+		}
+		if (timeWithinSegment < 2*quarterSegment) {
+			return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity,
+				qSize.MechanicalPulse * (1-intensity) + rSize.MechanicalPulse * intensity);
+		}
+		if (timeWithinSegment < 3*quarterSegment) {
+			return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity,
+				rSize.MechanicalPulse * (1-intensity) + sSize.MechanicalPulse * intensity);
+		}	
+		return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity));
+	}
+	
+	public BeatSize GetBeatAtTime(float time) {
+		if (time - segmentStartTime > segmentLength) {
+			currentSegment = (Segment) (((int) currentSegment + 1) % 6);
+			segmentStartTime = time;
+			switch (currentSegment) {
+			case Segment.PP_INTERVAL:
+				segmentLength = currentRhythm.GetPPInterval();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
+				break;
+			case Segment.P_WAVE:
+				segmentLength = currentRhythm.GetPRInterval() - currentRhythm.GetPRSegment();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetPSize()};
+				break;
+			case Segment.PR_SEGMENT:
+				segmentLength = currentRhythm.GetPRSegment();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
+				break;
+			case Segment.QRS_COMPLEX:
+				segmentLength = currentRhythm.GetQRSComplex();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetQSize(), currentRhythm.GetRSize(), currentRhythm.GetSSize()};
+				break;
+			case Segment.ST_SEGMENT:
+				segmentLength = currentRhythm.GetSTSegment();
+				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
+				break;
+			case Segment.T_WAVE:
+				segmentLength = currentRhythm.GetQTInterval() - currentRhythm.GetQRSComplex() - currentRhythm.GetSTSegment();
+				segmentBeatSize = new BeatSize[]{currentRhythm.GetTSize()};
+				break;
+			}
+		}
 		
-		// P wave
-		if (moduluTime < prInterval) {
-			if (moduluTime < prInterval - prSegment) {
-				float intensity = -Mathf.Pow(2*moduluTime/(prInterval-prSegment) - 1, 2) + 1f;
-				return new BeatSize(pSize.ElectricalPulse * intensity, pSize.MechanicalPulse * intensity);
-			} else {
-				return new BeatSize(0f, 0f);
-			}
+		switch (currentSegment) {
+		case Segment.PP_INTERVAL:
+		case Segment.PR_SEGMENT:
+		case Segment.ST_SEGMENT:
+			return segmentBeatSize[0];
+		case Segment.P_WAVE:
+			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
+		case Segment.QRS_COMPLEX:
+			return GetQRSWaveAtTime(time - segmentStartTime, segmentBeatSize[0], segmentBeatSize[1], segmentBeatSize[2]);
+		case Segment.T_WAVE:
+			return GetPTWaveAtTime(time - segmentStartTime, segmentBeatSize[0]);
 		}
-		// QRS complex
-		if (moduluTime < prInterval + qrsComplex) {
-			moduluTime -= prInterval;
-			float quoter = qrsComplex / 4;
-			float intensity = (moduluTime % (moduluTime / 4)) / quoter;
-			if (moduluTime < quoter) {
-				return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity);
-			}
-			if (moduluTime < 2*quoter) {
-				return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity,
-					qSize.MechanicalPulse * (1-intensity) + rSize.MechanicalPulse * intensity);
-			}
-			if (moduluTime < 3*quoter) {
-				return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity,
-					rSize.MechanicalPulse * (1-intensity) + sSize.MechanicalPulse * intensity);
-			}	
-			return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity));
-		}
-		// ST period
-		if (moduluTime < prInterval + qrsComplex + stSegment) {
-			return new BeatSize(0f, 0f);
-		}
-		// T wave
-		if (moduluTime < prInterval + qtIntervale) {
-			moduluTime -= prInterval + qrsComplex + stSegment;
-			float intensity = -Mathf.Pow(2*moduluTime/(qtIntervale-qrsComplex-stSegment) - 1, 2) + 1f;
-			return new BeatSize(tSize.ElectricalPulse * intensity, tSize.MechanicalPulse * intensity);
-		}
-		// We're in the space between beats.
+		
+		// Should never get here!
+		Debug.Log ("Should never get here!");
 		return new BeatSize(0f, 0f);
 	}
 
 	// Use this for initialization
-	void Start () {
-	
-	}
+	void Start () { }
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update () { }
 }
