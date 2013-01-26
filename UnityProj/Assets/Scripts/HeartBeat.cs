@@ -12,9 +12,13 @@ public class HeartBeat : MonoBehaviour {
 	 *   MechanicalSize: The strangth of the mecahnical beat at given time in Joule*1.6e-25
 	 */
 	public class BeatSize {
-		public BeatSize(float electricalPulse, float mechanicalBeat) {
+		public BeatSize(float electricalPulse, float mechanicalBeat) :
+			this(electricalPulse, mechanicalBeat, 0f) { }
+		
+		internal BeatSize(float electricalPulse, float mechanicalBeat, float pushFactor) {
 			this.electricalPulse = electricalPulse;
 			this.mechanicalBeat = mechanicalBeat;
+			this.pushFactor = pushFactor;
 		}
 		
 		public float ElectricalPulse {
@@ -25,11 +29,16 @@ public class HeartBeat : MonoBehaviour {
 			get { return mechanicalBeat; }
 		}
 		
+		public float PushFactor {
+			get { return pushFactor; }
+		}
+		
 		float electricalPulse;
 		float mechanicalBeat;
+		float pushFactor;
 	}
 	
-	public static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f);
+	public static BeatSize ZERO_BEAT_SIZE = new BeatSize(0f, 0f, 0f);
 	
 	private enum Segment {
 		PP_INTERVAL = 0,
@@ -51,24 +60,25 @@ public class HeartBeat : MonoBehaviour {
 	
 	private BeatSize GetPTWaveAtTime(float timeWithinSegment, BeatSize beatSize) {
 		float intensity = -Mathf.Pow(2*timeWithinSegment/segmentLength - 1, 2) + 1f;
-		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity);
+		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity, 0f);
 	}
 	
-	// Note: In order to give relatively stable force up, the whole QRS complex gives MechanicalPulse of the maximal R size.
 	private BeatSize GetQRSWaveAtTime(float timeWithinSegment, BeatSize qSize, BeatSize rSize, BeatSize sSize) {
 		float quarterSegment = segmentLength / 4;
 		float intensity = (timeWithinSegment % quarterSegment) / quarterSegment;
-		float mechanicalPulse = rSize.MechanicalPulse;
+		float pushFactor = rSize.MechanicalPulse;
 		if (timeWithinSegment < quarterSegment) {
-			return new BeatSize(qSize.ElectricalPulse * intensity, mechanicalPulse);
+			return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity, pushFactor);
 		}
 		if (timeWithinSegment < 2*quarterSegment) {
-			return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity, mechanicalPulse);
+			return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity,
+				qSize.MechanicalPulse * (1-intensity) + rSize.MechanicalPulse * intensity, pushFactor);
 		}
 		if (timeWithinSegment < 3*quarterSegment) {
-			return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity, mechanicalPulse);
+			return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity,
+				rSize.MechanicalPulse * (1-intensity) + sSize.MechanicalPulse * intensity, pushFactor);
 		}	
-		return new BeatSize(sSize.ElectricalPulse * (1-intensity), mechanicalPulse);
+		return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity), pushFactor);
 	}
 	
 	public BeatSize GetBeatAtFramesBehind(int framesBehind) {

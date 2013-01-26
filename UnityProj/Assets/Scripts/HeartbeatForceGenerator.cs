@@ -27,7 +27,7 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 		if (beatSize == null) {
 			beatSize = HeartBeat.ZERO_BEAT_SIZE;
 		}
-		float pulse = beatSize.MechanicalPulse;
+		float pulse = beatSize.PushFactor;
 		
 		Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
 		Vector3 localDown = referenceTransform.TransformDirection(Vector3.down);

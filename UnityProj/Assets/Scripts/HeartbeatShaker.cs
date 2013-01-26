@@ -16,7 +16,7 @@ public class HeartbeatShaker : MonoBehaviour {
 	void Update () {
 		HeartBeat.BeatSize beatSize = heartbeatSource.PastBeat;
 		Vector3 localPosition = transform.localPosition;
-		float targetY = beatSize.ElectricalPulse * shakeScale;
+		float targetY = beatSize.MechanicalPulse * shakeScale;
 		localPosition.y = Mathf.SmoothDamp(localPosition.y, targetY, ref nodeVelocity, Time.deltaTime);
 		transform.localPosition = localPosition;
 	}

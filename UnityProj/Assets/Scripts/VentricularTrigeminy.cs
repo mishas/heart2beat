@@ -8,7 +8,8 @@ public class VentricularTrigeminy : HeartRhythm {
 	
 	public override HeartBeat.BeatSize GetPSize() {
 		beatIndex++;
-		return new HeartBeat.BeatSize(0.2f * GetJitter(), 0f);
+		float size = 0.2f * GetJitter();
+		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetQSize() {
 		float size = -0.1f * GetJitter();
