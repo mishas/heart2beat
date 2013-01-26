@@ -18,7 +18,6 @@ public class HeartbeatDisplay : MonoBehaviour {
 		//localPosition.y = Mathf.Sin(Time.time);
 		//localPosition.x = Time.time;
 		transform.localPosition = localPosition;
-		
 	}
 	
 }
