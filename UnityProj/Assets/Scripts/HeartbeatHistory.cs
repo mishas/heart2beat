@@ -35,7 +35,7 @@ public class HeartbeatHistory : MonoBehaviour {
 	public HeartBeat.BeatSize PastBeat {
 		get {
 			if (entries.Count == 0 || Time.time < queueTimeSeconds) {
-				return HeartBeat.ZERO_BEAT_SIZE;
+				return new HeartBeat.BeatSize(0, 0);
 			}
 			return entries.Peek().beatSize;
 		}

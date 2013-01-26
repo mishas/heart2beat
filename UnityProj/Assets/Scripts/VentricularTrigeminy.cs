@@ -26,7 +26,7 @@ public class VentricularTrigeminy : HeartRhythm {
 		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetSSize() {
-		float size = -0.4f * GetJitter();
+		float size = -0.3f * GetJitter();
 		if (beatIndex % 3 == 0) {
 			size = -0.2f * GetJitter();
 		}

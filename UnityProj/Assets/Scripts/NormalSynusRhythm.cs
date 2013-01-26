@@ -18,7 +18,7 @@ public class NormalSynusRhythm : HeartRhythm {
 		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetSSize() {
-		float size = -0.4f * GetJitter();
+		float size = -0.3f * GetJitter();
 		return new HeartBeat.BeatSize(size, size);
 	}
 	public override HeartBeat.BeatSize GetTSize() {
