@@ -561,6 +561,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 332969168}
+  - 114: {fileID: 332969169}
   m_Layer: 0
   m_Name: CameraAnchor
   m_TagString: Untagged
@@ -580,6 +581,18 @@ Transform:
   m_Children:
   - {fileID: 1955418857}
   m_Father: {fileID: 0}
+--- !u!114 &332969169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332969167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cc15433d1871549bc58e76943ef168, type: 3}
+  m_Name: 
+  transformToChase: {fileID: 1996008812}
+  smoothFactor: 1
 --- !u!1001 &389876310
 Prefab:
   m_ObjectHideFlags: 0
@@ -858,7 +871,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 485313327}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
+  m_LocalRotation: {x: -.132012054, y: .665555477, z: -.722896516, w: -.130496711}
   m_LocalPosition: {x: -7.3168354, y: 23.309515, z: 20.695137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2650,6 +2663,10 @@ Prefab:
     - target: {fileID: 400000, guid: bab138a352d100645a474b547c437cc6, type: 2}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bab138a352d100645a474b547c437cc6, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bab138a352d100645a474b547c437cc6, type: 2}
