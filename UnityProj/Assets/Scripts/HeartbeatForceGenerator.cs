@@ -34,7 +34,7 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 		
 		Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
 		Vector3 localDown = referenceTransform.TransformDirection(Vector3.down);
-		
+
 		if (Physics.Raycast(targetBody.position, localDown, (float)(sphereRadius + 0.1 * sphereRadius)) && pulse > 0 ){
 			if (lastUpdateTime + noUpdateWindow >= Time.time) {
 				return;

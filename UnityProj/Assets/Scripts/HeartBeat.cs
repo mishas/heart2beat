@@ -57,6 +57,7 @@ public class HeartBeat : MonoBehaviour {
 	
 	private BeatSize[] beatSizeMemory = new BeatSize[500];
 	private int indexInBeatSizeMemory = 0;
+	private long currentBeatId = 0;
 	
 	private BeatSize GetPTWaveAtTime(float timeWithinSegment, BeatSize beatSize) {
 		float intensity = -Mathf.Pow(2*timeWithinSegment/segmentLength - 1, 2) + 1f;
@@ -85,6 +86,10 @@ public class HeartBeat : MonoBehaviour {
 		return beatSizeMemory[(beatSizeMemory.Length + indexInBeatSizeMemory - framesBehind) % beatSizeMemory.Length];
 	}
 	
+	public long GetCurrentBeatId(){
+		return currentBeatId;
+	}
+	
 	public BeatSize GetBeatAtTime(float time) {
 		if (time - segmentStartTime > segmentLength) {
 			currentSegment = (Segment) (((int) currentSegment + 1) % 6);
@@ -95,6 +100,7 @@ public class HeartBeat : MonoBehaviour {
 				segmentBeatSize = new BeatSize[]{ZERO_BEAT_SIZE};
 				break;
 			case Segment.P_WAVE:
+				currentBeatId += 1;
 				segmentLength = currentRhythm.GetPRInterval() - currentRhythm.GetPRSegment();
 				segmentBeatSize = new BeatSize[]{currentRhythm.GetPSize()};
 				break;
