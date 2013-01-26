@@ -19,14 +19,13 @@ public class HeartbeatHistory : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float curTime = Time.time;
 		
 		HeartBeatEntry entry = new HeartBeatEntry();
 		entry.time = curTime;
 		entry.beatSize = sourceHeartBeat.GetBeatAtTime(curTime);
 		entries.Enqueue(entry);
-		Debug.Log("History entry : " + entry.beatSize.MechanicalPulse);
 		while (entries.Peek().time < curTime - queueTimeSeconds) {
 			entries.Dequeue();
 		}
