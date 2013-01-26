@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HeartbeatForceGenerator : MonoBehaviour {
 	
-	public HeartBeat heartbeat;
+	public HeartbeatHistory heartbeat;
 	public Rigidbody targetBody;
 	public float forceScale = 1f;
 	
@@ -22,11 +22,10 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		HeartBeat.BeatSize beatSize = heartbeat.GetBeatAtFramesBehind(Time.captureFramerate * 1);
+		HeartBeat.BeatSize beatSize = heartbeat.PastBeat;
 		if (beatSize == null) {
 			beatSize = HeartBeat.ZERO_BEAT_SIZE;
 		}
-		Debug.Log ("Blah: " + beatSize.MechanicalPulse);
 		float pulse = beatSize.MechanicalPulse;
 		if (referenceTransform.InverseTransformPoint(targetBody.position).y - sphereRadius < (0.1 * sphereRadius) && pulse != 0 ){
 			Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);

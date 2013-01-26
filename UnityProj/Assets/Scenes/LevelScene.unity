@@ -467,6 +467,7 @@ GameObject:
   - 114: {fileID: 669070181}
   - 114: {fileID: 669070182}
   - 114: {fileID: 669070183}
+  - 114: {fileID: 669070184}
   m_Layer: 0
   m_Name: Heartbeat
   m_TagString: Untagged
@@ -507,7 +508,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb3f04bc015fdf84e8857e8fc7f006e5, type: 3}
   m_Name: 
-  heartbeat: {fileID: 669070179}
+  heartbeat: {fileID: 669070184}
   targetBody: {fileID: 1877445310}
   forceScale: 300
   referenceTransform: {fileID: 495024687}
@@ -534,6 +535,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7820301a9cd8d402fbdc6bbd0a1057e4, type: 3}
   m_Name: 
   bpm: 60
+--- !u!114 &669070184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb9bccaf7bd4ad4788b55993f0012c4, type: 3}
+  m_Name: 
+  sourceHeartBeat: {fileID: 669070179}
+  queueTimeSeconds: 2
 --- !u!1 &686954546
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0d5d2a5b522e74fa4904e8ac726c0a, type: 3}
   m_Name: 
   heartbeat: {fileID: 669070179}
-  lookaheadWindow: 1
 --- !u!23 &890357052
 Renderer:
   m_ObjectHideFlags: 0
@@ -1362,6 +1374,10 @@ Prefab:
       propertyPath: heartbeat
       value: 
       objectReference: {fileID: 669070179}
+    - target: {fileID: 100002, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
   m_RootGameObject: {fileID: 1820604076}
