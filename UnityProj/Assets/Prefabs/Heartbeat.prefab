@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Heartbeat
   m_TagString: Untagged
@@ -42,7 +43,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 2b2b5dd6bd806a141ae436d9fdd49fc2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 64a276faa4879794794b8df24d354a28, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aedba057e35c43a48d14d869a1281a3, type: 3}
   m_Name: 
-  currentRhythm: {fileID: 11400012}
+  currentRhythm: {fileID: 11400014}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,6 +166,18 @@ MonoBehaviour:
   heartBeatHistory: {fileID: 11400008}
   targetClip: {fileID: 8200000}
 --- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c539270727f504fe2bf06ad7cc498626, type: 3}
+  m_Name: 
+  bpm: 30
+  jitterFactor: .0500000007
+--- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
