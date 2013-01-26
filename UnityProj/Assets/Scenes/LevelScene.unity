@@ -600,9 +600,10 @@ MonoBehaviour:
   m_Name: 
   heartbeat: {fileID: 669070184}
   targetBody: {fileID: 1877445310}
-  forceScale: 200
+  forceScale: 300
   minJumpHeight: .300000012
   referenceTransform: {fileID: 495024687}
+  noUpdateWindow: .400000006
 --- !u!114 &669070182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,6 +1228,14 @@ Prefab:
       propertyPath: currentRhythm
       value: 
       objectReference: {fileID: 669070185}
+    - target: {fileID: 11400002, guid: 43906cea48de8864591a36460740a4f4, type: 2}
+      propertyPath: noUpdateWindow
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 43906cea48de8864591a36460740a4f4, type: 2}
+      propertyPath: forceScale
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
   m_RootGameObject: {fileID: 669070178}

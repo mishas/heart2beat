@@ -11,6 +11,9 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	public Transform referenceTransform;
 	
 	private float sphereRadius;
+	
+	private float lastUpdateTime = 0f;
+	public float noUpdateWindow = 0.2f;
  
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,10 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 		Vector3 localDown = referenceTransform.TransformDirection(Vector3.down);
 		
 		if (Physics.Raycast(targetBody.position, localDown, (float)(sphereRadius + 0.1 * sphereRadius)) && pulse > 0 ){
+			if (lastUpdateTime + noUpdateWindow >= Time.time) {
+				return;
+			}
+			lastUpdateTime = Time.time;
 			Debug.Log("Force at time " + Time.time + " : " + pulse);
 			targetBody.AddForce(localUp * pulse * forceScale);
 		}
