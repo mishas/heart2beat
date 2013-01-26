@@ -54,21 +54,21 @@ public class HeartBeat : MonoBehaviour {
 		return new BeatSize(beatSize.ElectricalPulse * intensity, beatSize.MechanicalPulse * intensity);
 	}
 	
+	// Note: In order to give relatively stable force up, the whole QRS complex gives MechanicalPulse of the maximal R size.
 	private BeatSize GetQRSWaveAtTime(float timeWithinSegment, BeatSize qSize, BeatSize rSize, BeatSize sSize) {
 		float quarterSegment = segmentLength / 4;
 		float intensity = (timeWithinSegment % quarterSegment) / quarterSegment;
+		float mechanicalPulse = rSize.MechanicalPulse;
 		if (timeWithinSegment < quarterSegment) {
-			return new BeatSize(qSize.ElectricalPulse * intensity, qSize.MechanicalPulse * intensity);
+			return new BeatSize(qSize.ElectricalPulse * intensity, mechanicalPulse);
 		}
 		if (timeWithinSegment < 2*quarterSegment) {
-			return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity,
-				qSize.MechanicalPulse * (1-intensity) + rSize.MechanicalPulse * intensity);
+			return new BeatSize(qSize.ElectricalPulse * (1-intensity) + rSize.ElectricalPulse * intensity, mechanicalPulse);
 		}
 		if (timeWithinSegment < 3*quarterSegment) {
-			return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity,
-				rSize.MechanicalPulse * (1-intensity) + sSize.MechanicalPulse * intensity);
+			return new BeatSize(rSize.ElectricalPulse * (1-intensity) + sSize.ElectricalPulse * intensity, mechanicalPulse);
 		}	
-		return new BeatSize(sSize.ElectricalPulse * (1-intensity), sSize.MechanicalPulse * (1-intensity));
+		return new BeatSize(sSize.ElectricalPulse * (1-intensity), mechanicalPulse);
 	}
 	
 	public BeatSize GetBeatAtFramesBehind(int framesBehind) {
