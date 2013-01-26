@@ -24,7 +24,7 @@ public class HeartbeatForceGenerator : MonoBehaviour {
 	void FixedUpdate() {
 		HeartBeat.BeatSize beatSize = heartbeat.getBeatAtTime(Time.time);
 		float pulse = beatSize.MechanicalPulse;
-		if (referenceTransform.InverseTransformPoint(targetBody.position).y - sphereRadius < 0.1 && pulse != 0 ){
+		if (referenceTransform.InverseTransformPoint(targetBody.position).y - sphereRadius < (0.1 * sphereRadius) && pulse != 0 ){
 			Vector3 localUp = referenceTransform.TransformDirection(Vector3.up);
 			targetBody.AddForce(localUp * pulse * forceScale);
 		}
