@@ -114,12 +114,12 @@ MonoBehaviour:
   levelDefinitions:
   - levelName: First Level
     sceneName: Level1Scene
-  - levelName: OtherLevel
-    sceneName: Lala
-  - levelName: ThirdLevel
-    sceneName: BlaBla
-  - levelName: LastLevel
-    sceneName: YadaYada
+  - levelName: Second Level
+    sceneName: Level2Scene
+  - levelName: Third Level
+    sceneName: Level3Scene
+  - levelName: CRAZY LEVEL
+    sceneName: Level4Scene
   firstButtonRect:
     serializedVersion: 2
     x: .25
