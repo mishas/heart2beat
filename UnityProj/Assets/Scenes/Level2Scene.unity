@@ -634,7 +634,7 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .200000003
+  m_Intensity: .300000012
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1821,6 +1821,7 @@ Transform:
   - {fileID: 298308307}
   - {fileID: 404856014}
   - {fileID: 1598145294}
+  - {fileID: 681651062}
   - {fileID: 1861394549}
   - {fileID: 1009052546}
   - {fileID: 1382562176}
@@ -1832,7 +1833,6 @@ Transform:
   - {fileID: 1235836770}
   - {fileID: 723967461}
   - {fileID: 678940087}
-  - {fileID: 681651062}
   - {fileID: 166225493}
   m_Father: {fileID: 0}
 --- !u!1 &1009052545
@@ -2148,7 +2148,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 721233389}
   m_GameObject: {fileID: 1277158684}
-  m_Material: {fileID: 13400000, guid: f38f4f261d6e11348a04ff159b8f8dbe, type: 2}
+  m_Material: {fileID: 13400000, guid: a7f24800cad324b02b4fd47e52cadd77, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
