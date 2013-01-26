@@ -21,6 +21,7 @@ public class WinConditionCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other == targetCollider) {
+			Destroy(other.gameObject);
 			hasWon = true;	
 		}
 	}

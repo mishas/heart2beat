@@ -257,6 +257,7 @@ GameObject:
   - 135: {fileID: 557463223}
   - 23: {fileID: 557463222}
   - 114: {fileID: 557463225}
+  - 54: {fileID: 557463226}
   m_Layer: 0
   m_Name: WinCollider
   m_TagString: Untagged
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 502b4f5c658c04f47a8f51f10f78f99f, type: 3}
   m_Name: 
-  targetCollider: {fileID: 0}
+  targetCollider: {fileID: 1877445307}
   hasWon: 0
   textRect:
     serializedVersion: 2
@@ -338,7 +339,7 @@ MonoBehaviour:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 1, b: .992156863, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -381,7 +382,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 0}
-    m_FontSize: 0
+    m_FontSize: 32
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
@@ -393,6 +394,21 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!54 &557463226
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557463220}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &666324421
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +671,26 @@ Prefab:
     - target: {fileID: 100000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
       propertyPath: m_Name
       value: WorldRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
+      propertyPath: targetCollider
+      value: 
+      objectReference: {fileID: 1877445307}
+    - target: {fileID: 11400000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
+      propertyPath: textStyle.m_FontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
+      propertyPath: textStyle.m_Normal.m_TextColor.b
+      value: .992156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
+      propertyPath: textStyle.m_Normal.m_TextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
+      propertyPath: textStyle.m_Normal.m_TextColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b082df270cfc63945b3ea010040ecf97, type: 2}
