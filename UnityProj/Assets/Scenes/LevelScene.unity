@@ -556,6 +556,7 @@ GameObject:
   - 114: {fileID: 669070182}
   - 114: {fileID: 669070183}
   - 114: {fileID: 669070184}
+  - 114: {fileID: 669070185}
   m_Layer: 0
   m_Name: Heartbeat
   m_TagString: Untagged
@@ -574,7 +575,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aedba057e35c43a48d14d869a1281a3, type: 3}
   m_Name: 
-  currentRhythm: {fileID: 669070182}
+  currentRhythm: {fileID: 669070185}
 --- !u!4 &669070180
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +641,18 @@ MonoBehaviour:
   m_Name: 
   sourceHeartBeat: {fileID: 669070179}
   queueTimeSeconds: 2
+--- !u!114 &669070185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c539270727f504fe2bf06ad7cc498626, type: 3}
+  m_Name: 
+  bpm: 30
+  jitterFactor: .0500000007
 --- !u!1 &686954546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1065,7 @@ Transform:
   m_PrefabInternal: {fileID: 1991659701}
   m_GameObject: {fileID: 1408353762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 10}
+  m_LocalPosition: {x: 2, y: -.330000013, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 890357055}
@@ -1210,6 +1223,10 @@ Prefab:
       propertyPath: referenceTransform
       value: 
       objectReference: {fileID: 495024687}
+    - target: {fileID: 11400000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
+      propertyPath: currentRhythm
+      value: 
+      objectReference: {fileID: 669070185}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43906cea48de8864591a36460740a4f4, type: 2}
   m_RootGameObject: {fileID: 669070178}
@@ -1630,6 +1647,10 @@ Prefab:
     - target: {fileID: 100002, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.330000013
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46c995624eb11754198397e2406ef8dc, type: 2}
