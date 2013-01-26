@@ -5,21 +5,21 @@ public class NormalSynusRhythm : HeartRhythm {
 	
 	public float jitterFactor = 0.05f;
 	
+	private float fixedRSize = 0.8f;
+	private float jitteredRSize;
+	
 	public override HeartBeat.BeatSize GetPSize() {
-		float size = 0.2f * GetJitter();
-		return new HeartBeat.BeatSize(size, size);
+		return new HeartBeat.BeatSize(0.2f * GetJitter(), 0f);
 	}
 	public override HeartBeat.BeatSize GetQSize() {
-		float size = -0.1f * GetJitter();
-		return new HeartBeat.BeatSize(size, size);
+		jitteredRSize = fixedRSize * GetJitter();
+		return new HeartBeat.BeatSize(-0.1f * GetJitter(), jitteredRSize);
 	}
 	public override HeartBeat.BeatSize GetRSize() {
-		float size = 0.8f * GetJitter();
-		return new HeartBeat.BeatSize(size, size);
+		return new HeartBeat.BeatSize(jitteredRSize, jitteredRSize);
 	}
 	public override HeartBeat.BeatSize GetSSize() {
-		float size = -0.4f * GetJitter();
-		return new HeartBeat.BeatSize(size, size);
+		return new HeartBeat.BeatSize(-0.4f * GetJitter(), jitteredRSize);
 	}
 	public override HeartBeat.BeatSize GetTSize() {
 		return new HeartBeat.BeatSize(0.3f * GetJitter(), 0f);
